@@ -48,7 +48,7 @@ for cat_layer1 in jd:
             else:
                 break
         # Write into a json file
-        with open('data/{}/{}/info.json'.format(key, sub_key), 'w') as f:
+        with open('data/{}/{}/info.json'.format(key.replace('/', '-'), sub_key.replace('/', '-')), 'w') as f:
             json.dump(product_records, f)
 
 

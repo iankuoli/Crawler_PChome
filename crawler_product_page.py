@@ -102,7 +102,7 @@ def crawl_product_page(pd_id, millis, headers):
     }
 
     root_path = 'data/{}'.format(pd_cat_layer1)
-    root_path2 = 'data/{}/{}'.format(pd_cat_layer1, pd_cat_layer2.replace('/', '-'))
+    root_path2 = 'data/{}/{}'.format(pd_cat_layer1.replace('/', '-'), pd_cat_layer2.replace('/', '-'))
     if not os.path.isdir(root_path):
         os.mkdir(root_path)
     if not os.path.isdir(root_path2):
