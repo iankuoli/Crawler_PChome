@@ -27,7 +27,7 @@ res_text = res_text.replace("try{jsonpcb_newarrival(", "")
 res_text_json = res_text.replace(");}catch(e){if(window.console){console.log(e);}}", "")
 jd = json.loads(res_text_json)
 
-for cat_layer1 in jd[0:1]:
+for cat_layer1 in jd:
     cat_layer1_name = cat_layer1['Name']
     for cat_layer2 in cat_layer1['Nodes']:
         cat_layer2_name = cat_layer2['Name']
@@ -35,14 +35,14 @@ for cat_layer1 in jd[0:1]:
         page_id = 1
         for page in range(1, 100):
             product_records_cat = crawl_all_products(cat_layer2_id, page_id, millis, headers)
-            for key in product_records_cat.keys():
-                if key not in product_records:
-                    product_records[key] = {}
-                for sub_key in product_records_cat[key].keys():
-                    if sub_key not in product_records[key]:
-                        product_records[key][sub_key] = []
-                    product_records[key][sub_key] = product_records[key][sub_key] + product_records_cat[key][sub_key]
             if product_records_cat:
+                for key in product_records_cat.keys():
+                    if key not in product_records:
+                        product_records[key] = {}
+                    for sub_key in product_records_cat[key].keys():
+                        if sub_key not in product_records[key]:
+                            product_records[key][sub_key] = []
+                        product_records[key][sub_key] = product_records[key][sub_key] + product_records_cat[key][sub_key]
                 page_id += 50
                 time.sleep(8)
             else:
