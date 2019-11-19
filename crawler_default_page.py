@@ -10,7 +10,7 @@ from utils import *
 product_records = {}
 
 # Category
-cat4_id = 'QDAN'
+cat4_id = 'QCAL'
 cat4_name = category[cat4_id[:2]]['Nodes'][cat4_id]['Name']
 key = category[cat4_id[:2]]['Name']
 sub_key = cat4_name
