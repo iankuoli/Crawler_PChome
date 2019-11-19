@@ -37,7 +37,7 @@ def convert2json(url, func_name):
     res_text_json = res_text.replace(");}catch(e){if(window.console){console.log(e);}}", "")
     jd = load_json(res_text_json)
     while jd is None:
-        print('res_text_json')
+        print(res_text_json)
         time.sleep(8)
         res_text = requests.get(url=url, headers=headers).text
         res_text = res_text.replace("try{" + func_name + "(", "")
