@@ -71,8 +71,8 @@ for cat_layer_1st in side_bar_content:
                 break
 
         # Write into a json file
-        with open('data/{}/{}/info_{}_{}.json'.format(key.replace('/', '-'), sub_key.replace('/', '-'),
-                                                      cat_layer_1st, cat_layer_2nd), 'w') as f:
+        with open('data/{}/{}/info_{}.json'.format(key.replace('/', '-'), sub_key.replace('/', '-'),
+                                                   cat_name), 'w') as f:
             json.dump(product_records, f)
 
 # Write into a json file
