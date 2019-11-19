@@ -14,6 +14,8 @@ jd = convert2json(url, 'jsonpcb_newarrival')
 
 for cat_layer1 in jd:
     cat_layer1_name = cat_layer1['Name']
+    if cat_layer1_name == "3C" or cat_layer1_name == "家電" or cat_layer1_name == "運動戶外":
+        continue
     for cat_layer2 in cat_layer1['Nodes']:
         cat_layer2_name = cat_layer2['Name']
         cat_layer2_id = cat_layer2['Id']
