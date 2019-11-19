@@ -74,6 +74,7 @@ for cat_layer_1st in side_bar_content:
         with open('data/{}/{}/info_{}.json'.format(key.replace('/', '-'), sub_key.replace('/', '-'),
                                                    cat_name), 'w') as f:
             json.dump(product_records, f)
+        product_records = {}
 
 # Write into a json file
 with open('data/{}/{}/info.json'.format(key.replace('/', '-'), sub_key.replace('/', '-')), 'w') as f:
