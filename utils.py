@@ -70,8 +70,17 @@ def find_cat4_id(cat4_id):
     :param cat4_id: category ID
     :return: 1st layer name, 2nd layer name
     """
-    cat_name1 = category[cat4_id[:2]]['Name']
-    cat_name2 = category[cat4_id[:2]]['Nodes'][cat4_id]['Name']
+    key1 = cat4_id[:2]
+    key2 = cat4_id
+    if key1 in category:
+        cat_name1 = category[key1]['Name']
+        if key2 in category[key1]['Nodes']:
+            cat_name2 = category[key1]['Nodes'][key2]['Name']
+        else:
+            cat_name2 = 'null'
+    else:
+        cat_name1 = 'null'
+        cat_name2 = 'null'
     return cat_name1, cat_name2
 
 
