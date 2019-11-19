@@ -6,26 +6,11 @@ from crawler_all_products import crawl_all_products
 
 product_records = {}
 
-# Pretend to be a common user
-user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) ' \
-             'AppleWebKit/537.36 (KHTML, like Gecko) ' \
-             'Chrome/78.0.3904.97 Safari/537.36'
-headers = {'User-Agent': user_agent,
-           'server': 'PChome/1.0.4',
-           'Referer': 'https://mall.pchome.com.tw/newarrival/'}
-
 url = 'https://ecapi.pchome.com.tw/mall/cateapi/v1/sign' \
       '&tag=newarrival' \
       '&fields=Id,Name,Sort,Nodes' \
       '&_callback=jsonpcb_newarrival&{}'.format(millis)
-
-# Get the response
-res_text = requests.get(url=url, headers=headers).text
-
-# Parse the content in json format
-res_text = res_text.replace("try{jsonpcb_newarrival(", "")
-res_text_json = res_text.replace(");}catch(e){if(window.console){console.log(e);}}", "")
-jd = json.loads(res_text_json)
+jd = convert2json(url, 'jsonpcb_newarrival')
 
 for cat_layer1 in jd:
     cat_layer1_name = cat_layer1['Name']
@@ -34,7 +19,7 @@ for cat_layer1 in jd:
         cat_layer2_id = cat_layer2['Id']
         page_id = 1
         for page in range(1, 100):
-            product_records_cat = crawl_all_products(cat_layer2_id, page_id, millis, headers)
+            product_records_cat = crawl_all_products(cat_layer2_id, page_id, millis)
             if product_records_cat:
                 for key in product_records_cat.keys():
                     if key not in product_records:
