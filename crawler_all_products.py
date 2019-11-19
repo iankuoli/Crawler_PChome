@@ -28,6 +28,7 @@ def crawl_all_products(cat_id, page, millis):
             pd_id = product['Id']
             pd_name = product['Name']
             product_record = crawl_product_page(pd_id, millis)
+            time.sleep(2)
 
             if not product_record:
                 print(' --------------- 尚未販售! id = {} ; name = {} --------------- '.format(pd_id, pd_name))

@@ -39,6 +39,7 @@ for cat_layer_1st in side_bar_content:
 
             if jd:
                 for product in jd:
+                    time.sleep(2)
                     #
                     # Profile Parsing -------------------------------------------------------------------------------
                     #
