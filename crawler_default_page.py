@@ -72,7 +72,7 @@ for cat_layer_1st in side_bar_content:
 
         # Write into a json file
         with open('data/{}/{}/info_{}.json'.format(key.replace('/', '-'), sub_key.replace('/', '-'),
-                                                   cat_name), 'w') as f:
+                                                   cat_name.replace('/', '-')), 'w') as f:
             json.dump(product_records, f)
         product_records = {}
 
