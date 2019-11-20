@@ -10,7 +10,7 @@ from utils import *
 product_records = {}
 
 # Category
-cat4_id = 'QCAL'
+cat4_id = 'QDAP'
 cat4_name = category[cat4_id[:2]]['Nodes'][cat4_id]['Name']
 key = category[cat4_id[:2]]['Name']
 sub_key = cat4_name
@@ -71,6 +71,12 @@ for cat_layer_1st in side_bar_content:
                 break
 
         # Write into a json file
+        root_path = 'data/{}'.format(key.replace('/', '-'))
+        root_path2 = 'data/{}/{}'.format(key.replace('/', '-'), sub_key.replace('/', '-'))
+        if not os.path.isdir(root_path):
+            os.mkdir(root_path)
+        if not os.path.isdir(root_path2):
+            os.mkdir(root_path2)
         with open('data/{}/{}/info_{}.json'.format(key.replace('/', '-'), sub_key.replace('/', '-'),
                                                    cat_name.replace('/', '-')), 'w') as f:
             json.dump(product_records, f)
