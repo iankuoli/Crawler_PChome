@@ -92,20 +92,29 @@ def crawl_product_page(pd_id, millis):
     }
 
     root_path = 'data/{}'.format(pd_cat_layer1)
-    root_path2 = 'data/{}/{}'.format(pd_cat_layer1.replace('/', '-'), pd_cat_layer2.replace('/', '-'))
+    root_path2 = 'data/{}/{}'.format(pd_cat_layer1.replace('/', '-'),
+                                     pd_cat_layer2.replace('/', '-'))
+    root_path3 = 'data/{}/{}/{}'.format(pd_cat_layer1.replace('/', '-'),
+                                        pd_cat_layer2.replace('/', '-'),
+                                        pd_id.replace('/', '-'))
     if not os.path.isdir(root_path):
         os.mkdir(root_path)
     if not os.path.isdir(root_path2):
         os.mkdir(root_path2)
+    if not os.path.isdir(root_path3):
+        os.mkdir(root_path3)
 
-    pd_img_s_write_path = os.path.join(root_path2, pd_img_s.split('/')[-1])
+    pd_img_s_write_path = os.path.join(root_path3, pd_img_s.split('/')[-1])
     save_img_from_url(pd_img_s, pd_img_s_write_path)
 
-    pd_img_b_write_path = os.path.join(root_path2, pd_img_b.split('/')[-1])
+    pd_img_b_write_path = os.path.join(root_path3, pd_img_b.split('/')[-1])
     save_img_from_url(pd_img_b, pd_img_b_write_path)
 
     for img_url in pd_imgs_url_list:
-        img_write_path = os.path.join(root_path2, img_url.split('/')[-1])
+        img_write_path = os.path.join(root_path3, img_url.split('/')[-1])
         save_img_from_url(img_url, img_write_path)
+
+    with open(os.path.join(root_path3, 'info.json'), 'w') as f:
+        json.dump(product_record, f)
 
     return product_record
