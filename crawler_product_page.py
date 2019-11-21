@@ -30,8 +30,10 @@ def crawl_product_page(pd_id, millis):
     pd_store = pd_content['Store']
     pd_price_m = pd_content['Price']['M']
     pd_price_p = pd_content['Price']['P']
-    pd_img_s = 'https://b.ecimg.tw' + pd_content['Pic']['S']
-    pd_img_b = 'https://b.ecimg.tw' + pd_content['Pic']['B']
+    img_url_s = pd_content['Pic']['S'] if pd_content['Pic']['S'] else ''
+    img_url_b = pd_content['Pic']['B'] if pd_content['Pic']['B'] else ''
+    pd_img_s = 'https://b.ecimg.tw' + img_url_s
+    pd_img_b = 'https://b.ecimg.tw' + img_url_b
 
     # Get the product description
     pd_desc_url = 'https://ecapi.pchome.com.tw/cdn/ecshop/prodapi/v2/prod/{}/desc&fields=' \
